@@ -30,7 +30,7 @@
 				<li><a href="#block-how-cost">Тарифы</a></li>
 			</ul>
 		</div>
-		<button class="header_start" scrollto="#block-callback">Начать бесплатно</button>
+		<button class="header_start free-modal">Начать бесплатно</button>
 	</div>
 </header>
 <section id="block-start" class="block-start">
@@ -507,7 +507,7 @@
 					медицинскими информационными системами. Вам не придется ломать голову, переучивать персонал или заносить
 					данные в двух местах. Просто напишите нам название своей МИС, и мы расскажем, как подружим её с
 					“ВедёмПриём”:</p>
-				<button class="block-what-if_btn" scrollto="#block-callback" data-aos="fade-left" data-aos-delay="100">УЗНАТЬ ПОДРОБНОСТИ</button>
+				<button class="block-what-if_btn info-modal" data-aos="fade-left" data-aos-delay="100">УЗНАТЬ ПОДРОБНОСТИ</button>
 			</div>
 			<div class="col-lg-6">
 				<img src="dist/assets/what-if-img.png" alt="" class="block-what-if_image">
@@ -608,6 +608,53 @@
 		</form>
 	</div>
 </section>
+
+<div class="popup" id="popup">
+	<form id="freeForm" class="popup-form block-callback__form">
+		<a href="#" class="popup-close">
+			<img src="dist/assets/cross.svg" alt="">
+		</a>
+		<h3 class="title">Остался всего один шаг:</h3>
+		<label class="block-callback__form_label">
+			<span>Фамилия</span>
+			<input name="name" type="text">
+		</label>
+		<label class="block-callback__form_label">
+			<span>Телефон</span>
+			<input name="phone" type="tel">
+		</label>
+		<label class="block-callback__form_label">
+			<span>E-mail</span>
+			<input name="email" type="email">
+		</label>
+		<button type="submit" class="block-callback__form_btn">Отправить</button>
+	</form>
+	<form id="infoForm" class="popup-form block-callback__form">
+		<a href="#" class="popup-close">
+			<img src="dist/assets/cross.svg" alt="">
+		</a>
+		<h3 class="title">Давайте познакомимся!</h3>
+		<h5 class="subtitle">мы ответим в течение двух минут</h5>
+		<label class="block-callback__form_label">
+			<span>Фамилия</span>
+			<input name="name" type="text">
+		</label>
+		<label class="block-callback__form_label">
+			<span>Телефон</span>
+			<input name="phone" type="tel">
+		</label>
+		<label class="block-callback__form_label">
+			<span>E-mail</span>
+			<input name="email" type="email">
+		</label>
+		<label class="block-callback__form_label">
+			<span>Ваш вопрос:</span>
+			<textarea name="quest"></textarea>
+		</label>
+		<button type="submit" class="block-callback__form_btn">Отправить</button>
+	</form>
+</div>
+
 <footer class="footer" id="footer">
 	<div class="container">
 		<div class="row">
