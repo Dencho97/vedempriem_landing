@@ -180,34 +180,49 @@ $(() => {
 			el: '.block-results__slider__image .swiper-pagination',
 			clickable: true,
 		},
-		// autoplay: {
-		// 	delay: 5000,
-		// }
+		autoplay: {
+			delay: 5000,
+		}
 	});
 	const swiperMain = new Swiper('.block-results__slider .swiper-container', {
 		init: false,
-		// autoplay: {
-		// 	delay: 5000,
-		// }
+		autoplay: {
+			delay: 5000,
+		}
 	});
 	
 	swiperMain.on('slideChange', function () {
 		const active = this.activeIndex;
+		const containElemBefore = $('.block-results__slider__slide__statistic__column.before');
 		const containElem = $('.block-results__slider__slide__statistic__column.after');
-		containElem.find('span').each(function () {
+		containElem.find('span').each(function (i) {
+			const beforeValue = +$(containElemBefore.find('span')[i]).data('count');
 			const value = +$(this).data('count');
+			const maxValue = beforeValue < value ? value : beforeValue;
 			const postfix = $(this).data('postfix');
-			const widthElem = 100;//value / maxValue * 100;
+			const widthElem = {
+				before: beforeValue / maxValue * 100,
+				after: value / maxValue * 100
+			};
+			const statElemBefore = $(containElemBefore.find('span')[i]);
 			const statElem = $(this);
+			statElemBefore.css({width: '0%', transition: 'none'});
 			statElem.css({width: '0%', transition: 'none'});
+			const counterBefore = new CountUp(statElemBefore[0], beforeValue, {
+				duration: 3,
+				separator: '',
+				suffix: postfix
+			});
 			const counter = new CountUp(statElem[0], value, {
 				duration: 3,
 				separator: '',
 				suffix: postfix
 			});
+			counterBefore.start();
 			counter.start();
 			setTimeout(() => {
-				$(this).css({width: `${widthElem}%`, transition: 'ease-in .5s'});
+				statElemBefore.css({width: `${widthElem.before !== 0 ? widthElem.before : 25}%`, transition: 'ease-in .5s'});
+				statElem.css({width: `${widthElem.after !== 0 ? widthElem.after : 25}%`, transition: 'ease-in .5s'});
 			}, 500);
 		});
 		swiperImages.slideTo(active, 600);
@@ -225,7 +240,7 @@ $(() => {
 				before: beforeValue / maxValue * 100,
 				after: value / maxValue * 100
 			};
-			const statElemBefore = containElemBefore.find('span')[i];
+			const statElemBefore = $(containElemBefore.find('span')[i]);
 			const statElem = $(this);
 			statElemBefore.css({width: '0%', transition: 'none'});
 			statElem.css({width: '0%', transition: 'none'});
@@ -239,9 +254,11 @@ $(() => {
 				separator: '',
 				suffix: postfix
 			});
+			counterBefore.start();
 			counter.start();
 			setTimeout(() => {
-				$(this).css({width: `${widthElem}%`, transition: 'ease-in .5s'});
+				statElemBefore.css({width: `${widthElem.before !== 0 ? widthElem.before : 25}%`, transition: 'ease-in .5s'});
+				statElem.css({width: `${widthElem.after !== 0 ? widthElem.after : 25}%`, transition: 'ease-in .5s'});
 			}, 500);
 		});
 		swiperImages.slideTo(active, 600);
