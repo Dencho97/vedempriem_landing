@@ -53,6 +53,74 @@ $grey: #C4C4C4;
 	transition: ease-in .3s;
 }
 
+@keyframes pulse-red {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(254, 61, 95, 0.7);
+	}
+	
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(254, 61, 95, 0);
+	}
+	
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(254, 61, 95, 0);
+	}
+}
+
+@keyframes pulse-orange {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(255, 203, 0, 0.7);
+	}
+	
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(255, 203, 0, 0);
+	}
+	
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(255, 203, 0, 0);
+	}
+}
+
+@keyframes pulse-white {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
+	}
+	
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+	}
+	
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+	}
+}
+
+@keyframes pulse-green {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(115, 210, 88, 0.7);
+	}
+	
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgba(115, 210, 88, 0);
+	}
+	
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgba(115, 210, 88, 0);
+	}
+}
+
 *,
 *::before,
 *::after {
@@ -149,7 +217,7 @@ a {
 
 				a {
 					font-size: 0.875rem;
-					color: $grey;
+					color: $text-color;
 					letter-spacing: 0.2px;
 					text-transform: uppercase;
 					font-weight: $extra-bold;
@@ -203,7 +271,7 @@ a {
 		line-height: 1rem;
 		position: relative;
 		margin: calc(#{$spaceOutline / 2} + 5px) #{$spaceOutline / 2} 0 0;
-
+		@include standartAnimate();
 		&:before {
 			content: '';
 			position: absolute;
@@ -216,11 +284,16 @@ a {
 			top: calc(0px - #{$spaceOutline / 2});
 			filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.1));
 			@include standartAnimate();
+			box-shadow: 0 0 0 0 $red;
+			animation: pulse-red 2s infinite;
 		}
 
 		&:hover {
+			transform: scale(1.05);
 			&::before {
 				border: 1px solid $orange;
+				box-shadow: 0 0 0 0 $orange;
+				animation: pulse-orange 2s infinite;
 			}
 		}
 	}
@@ -297,7 +370,7 @@ a {
 }
 
 .block-start {
-	margin: 130px 0 0 0;
+	margin: 50px 0;
 	.typed-cursor {
 		position: relative;
 		top: -2px;
@@ -428,11 +501,11 @@ a {
 
 	&_title {
 		&-1 {
-			font-size: 1.125rem;
-			color: $green;
+			font-size: 1.75rem;
+			color: $text-color;
 			font-weight: bold;
 			margin: 0;
-			line-height: 1.3;
+			line-height: 1.1;
 		}
 
 		&-2 {
@@ -440,12 +513,13 @@ a {
 			font-weight: $extra-bold;
 			margin: 16px 0 0 0;
 			line-height: 1;
+			color: $orange;
 		}
 	}
 
 	&_advantagers {
 		list-style: none;
-		margin: 64px 0 0 0;
+		margin: 30px 0 0 0;
 		padding: 0;
 
 		li {
@@ -491,6 +565,53 @@ a {
 						opacity: 1;
 					}
 				}
+			}
+		}
+	}
+	&_btn {
+		$radiusCircle: 120px;
+		$spaceOutline: 20px;
+		outline: none;
+		background: linear-gradient(144.78deg, #9ED230 14.59%, #74B841 89.25%);
+		font-size: 0.875rem;
+		font-weight: bold;
+		color: white;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		border: none;
+		border-radius: 100%;
+		text-transform: uppercase;
+		width: $radiusCircle;
+		height: $radiusCircle;
+		cursor: pointer;
+		line-height: 1.3;
+		position: relative;
+		margin: -100px auto 0 auto;
+		@include standartAnimate();
+		&:before {
+			content: '';
+			position: absolute;
+			display: block;
+			width: calc(#{$radiusCircle} + #{$spaceOutline});
+			height: calc(#{$radiusCircle} + #{$spaceOutline});
+			border: 1px solid $red;
+			border-radius: 100%;
+			left: calc(0px - #{$spaceOutline / 2});
+			top: calc(0px - #{$spaceOutline / 2});
+			filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.1));
+			@include standartAnimate();
+			box-shadow: 0 0 0 0 $red;
+			animation: pulse-red 2s infinite;
+		}
+
+		&:hover {
+			transform: scale(1.05);
+			&::before {
+				border: 1px solid $orange;
+				box-shadow: 0 0 0 0 $orange;
+				animation: pulse-orange 2s infinite;
 			}
 		}
 	}
@@ -586,10 +707,10 @@ a {
 	margin: 90px 0 0 0;
 	background-size: auto;
 	background-repeat: no-repeat;
-	background-position: 0 430px;
+	background-position: 0 330px;
 
 	.row {
-		margin-top: 100px;
+		margin-top: 50px;
 	}
 
 	&_nav {
@@ -600,7 +721,7 @@ a {
 
 		li {
 			width: 100%;
-			margin-top: 20px;
+			margin-top: 10px;
 
 			&:first-child {
 				margin-top: 0;
@@ -639,9 +760,9 @@ a {
 				}
 
 				&.active {
-					background-color: #F4F4F4;
+					background-color: $green;
 					box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-					color: black;
+					color: white;
 
 					&::before {
 						height: 100%;
@@ -654,7 +775,8 @@ a {
 	&__sliders {
 		height: 520px;
 		position: relative;
-		top: -50px;
+		top: -60px;
+		transform: scale(0.75);
 	}
 
 	&__slider {
@@ -739,12 +861,12 @@ a {
 
 	&_text {
 		font-size: 1rem;
-		color: black;
+		color: white;
 		line-height: 1.4;
-		background-color: #F4F4F4;
+		background-color: $green;
 		border-radius: 30px;
 		margin: 20px 0 0 0;
-		padding: 15px 30px 15px 50px;
+		padding: 15px 30px;
 		position: absolute;
 		bottom: 0;
 
@@ -754,8 +876,6 @@ a {
 			display: block;
 			width: 50px;
 			height: 70px;
-			background-image: url('assets/curve-2-shadow.svg');
-			@include bg(contain);
 			left: -10px;
 			bottom: -10px;
 		}
@@ -773,7 +893,7 @@ a {
 }
 
 .block-how-start {
-	margin: 145px 0 0 0;
+	margin: 60px 0 0 0;
 
 	.row {
 		margin-top: 100px;
@@ -914,7 +1034,7 @@ a {
 	min-height: 1065px;
 	@include bg();
 	margin: 140px 0 0 0;
-	padding: 140px 0 0 0;
+	padding: 60px 0 0 0;
 
 	&_info {
 		.block-advantagers_text {
@@ -1045,12 +1165,16 @@ a {
 			left: calc(0px - #{$spaceOutline / 2});
 			top: calc(0px - #{$spaceOutline / 2});
 			filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.1));
+			box-shadow: 0 0 0 0 white;
+			animation: pulse-white 2s infinite;
 			@include standartAnimate();
 		}
 
 		&:hover {
 			&:before {
 				border: 1px solid $red;
+				box-shadow: 0 0 0 0 $red;
+				animation: pulse-white 2s infinite;
 			}
 		}
 	}
@@ -1193,6 +1317,7 @@ a {
 					}
 
 					&.before, &.after {
+						width: 25%;
 						p {
 							font-size: 1.125rem;
 							line-height: 1;
@@ -1237,7 +1362,6 @@ a {
 					}
 
 					&.after {
-						width: 35%;
 
 						span {
 							background: $green;
@@ -1472,6 +1596,8 @@ a {
 				left: calc(0px - #{$spaceOutline / 2});
 				top: calc(0px - #{$spaceOutline / 2});
 				filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.1));
+				box-shadow: 0 0 0 0 #73D258;
+				animation: pulse-green 2s infinite;
 				@include standartAnimate();
 			}
 
@@ -1479,6 +1605,8 @@ a {
 				transform: scale(1.05);
 				&:before {
 					border: 1px solid $red;
+					box-shadow: 0 0 0 0 $red;
+					animation: pulse-red 2s infinite;
 				}
 			}
 		}
@@ -1722,6 +1850,8 @@ a {
 				top: calc(0px - #{$spaceOutline / 2});
 				filter: drop-shadow(0px 10px 20px rgba(0, 0, 0, 0.1));
 				z-index: -1;
+				box-shadow: 0 0 0 0 #73D258;
+				animation: pulse-green 2s infinite;
 				@include standartAnimate();
 			}
 
@@ -1729,6 +1859,8 @@ a {
 				transform: scale(1.05);
 				&:before {
 					border: 1px solid $red;
+					box-shadow: 0 0 0 0$red;
+					animation: pulse-red 2s infinite;
 				}
 			}
 		}
