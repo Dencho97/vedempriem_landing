@@ -247,6 +247,9 @@ a {
 			@include bg(contain);
 			margin: 10px 0 0 0;
 			@include standartAnimate();
+			&.mob {
+				display: none;
+			}
 		}
 	}
 
@@ -2338,6 +2341,7 @@ a {
 		font-size: 1.8rem;
 	}
 	.header {
+		top: 15px;
 		#cross {
 			display: block;
 		}
@@ -2355,9 +2359,12 @@ a {
 		}
 
 		&_burger {
-			width: 95px;
+			width: 40px;
 			display: flex;
 			align-items: center;
+			img {
+				width: 100%;
+			}
 		}
 
 		&__menu {
@@ -2371,7 +2378,16 @@ a {
 			z-index: 999999;
 			flex-direction: column;
 			justify-content: center;
-
+			&_logo {
+				display: none;
+				&.mob {
+					display: flex;
+					width: 55px;
+					height: 55px;
+					@include bg(contain);
+					margin: 0;
+				}
+			}
 			&.open {
 				animation: fadeIn 0.3s linear forwards;
 				display: flex;
@@ -2412,8 +2428,22 @@ a {
 		}
 
 		&_start {
+			$radiusCircle: 65px;
+			$spaceOutline: 8px;
+			font-size: 0.625rem;
+			width: $radiusCircle;
+			height: $radiusCircle;
+			line-height: 1;
 			margin: 0;
-			transform: scale(.9);
+	
+			&:before {
+				width: calc(#{$radiusCircle} + #{$spaceOutline});
+				height: calc(#{$radiusCircle} + #{$spaceOutline});
+				border: 1px solid $red;
+				border-radius: 100%;
+				left: calc(0px - #{$spaceOutline / 2});
+				top: calc(0px - #{$spaceOutline / 2});
+			}
 		}
 	}
 	.block-start {
@@ -2425,15 +2455,10 @@ a {
 
 		&_advantagers {
 			margin-top: 30px;
+		}
 
-			li a:hover, li a.active {
-				background-color: #F4F4F4;
-				color: #4F4F4E;
-
-				&:after {
-					opacity: 0;
-				}
-			}
+		&_btn {
+			margin: 60px auto 0 auto;
 		}
 	}
 	.block-situation {
@@ -2457,7 +2482,6 @@ a {
 	.block-solution {
 		margin-top: 30px;
 		background: none !important;
-
 		.title-braсket {
 			br {
 				display: none;
@@ -2474,22 +2498,27 @@ a {
 
 		&_nav {
 			display: flex;
-			flex-wrap: wrap;
-
+			flex-wrap: nowrap;
+			width: 100%;
+			flex-direction: row;
+			@include standartAnimate();
+			&.wrap {
+				overflow: scroll;
+			}
 			li {
-				width: 50%;
-				margin-top: 0;
-				margin-bottom: 20px;
-
+				width: auto;
+				margin: 0;
 				a {
 					justify-content: center;
 					text-align: center;
 					position: relative;
 					padding-right: 35px;
-					font-size: 1rem;
-
+					font-size: 0.875rem;
+					line-height: 1;
+					height: 50px;
+					padding: 0 15px;
 					&::before {
-						left: 0;
+						display: none;
 					}
 				}
 			}
@@ -2498,13 +2527,27 @@ a {
 		&_text {
 			position: relative;
 			bottom: unset;
+			height: 200px;
+			overflow: auto;
+			display: block;
+			&::after {
+				content: '';
+				height: 32px;
+				width: 100%;
+				background: linear-gradient(to bottom, rgba(85, 171, 58, 0) 15%, #55ab3a 75%);
+				display: block;
+				position: sticky;
+				left: 0;
+				bottom: -15px;
+			}
 		}
 	}
 	.block-how-work {
-		margin-top: 80px;
+		margin-top: 60px;
 
 		&_video {
 			margin-top: 50px;
+			height: 350px;
 		}
 	}
 	.block-how-start {
@@ -2721,7 +2764,7 @@ a {
 
 @media screen and (max-width: 767px) {
 	body {
-		padding-top: 100px;
+		padding-top: 60px;
 	}
 	.block-situation {
 		min-height: 1720px;
@@ -2852,7 +2895,7 @@ a {
 
 @media screen and (max-width: 575px) {
 	.block-situation {
-		min-height: 1820px;
+		min-height: 1670px;
 
 		&_text {
 			font-size: 1rem;
@@ -2860,14 +2903,18 @@ a {
 
 		&__items__item {
 			padding-top: 30px !important;
-			height: 150px !important;
+			height: auto;
+			padding-bottom: 30px;
+			&.small, &.big {
+				height: auto;
+			}
 		}
 	}
 	.title-braсket {
 		font-size: 1.5rem;
 	}
-	.block-solution_nav li {
-		width: 100%;
+	.block-solution {
+		margin-top: -100px;
 	}
 	.block-how-start {
 		.row {
@@ -2913,27 +2960,39 @@ a {
 		width: 100%;
 	}
 	.block-advantagers {
-		min-height: 1715px;
+		min-height: 1595px;
 	}
-	.block-results__slider__image_mask {
-		width: 300px;
-		background-size: 300px;
-		height: 252px;
-	}
-	.block-results__slider__image .swiper-container {
-		width: 299px;
-		height: 250px;
-
-		.swiper-slide {
-			background-size: cover;
+	.block-results {
+		margin-top: -70px;
+		&__slider {
+			&__image_mask {
+				width: 300px;
+				background-size: 300px;
+				height: 252px;
+			}
+			&__image {
+				.swiper-container {
+					width: 299px;
+					height: 250px;
+					.swiper-slide {
+						background-size: cover;
+					}
+				}
+			}
+			&__slide {
+				&__statistic {
+					&__column {
+						&.titles p {
+							font-size: 1rem;
+							margin-right: 5px;
+						}
+						&.period {
+							width: 60px;
+						}
+					}
+				}
+			}
 		}
-	}
-	.block-results__slider__slide__statistic__column.titles p {
-		font-size: 1rem;
-		margin-right: 5px;
-	}
-	.block-results__slider__slide__statistic__column.period {
-		width: 60px;
 	}
 	.block-what-if_image-mobile {
 		float: none;
@@ -2941,10 +3000,12 @@ a {
 		height: auto;
 	}
 	.block-what-if {
-		min-height: 1110px;
-
+		min-height: 1150px;
 		&_btn {
 			font-size: 1rem;
 		}
+	}
+	.block-need-site {
+		margin-top: -50px;
 	}
 }

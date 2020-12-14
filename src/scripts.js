@@ -161,16 +161,40 @@ $(() => {
 	const swiperMockups = new Swiper('.block-solution__slider .swiper-container', {
 		direction: 'vertical'
 	});
+	let curActive = $('.block-solution_nav li a.active').parents('li');
+	const countElems = $('.block-solution_nav li').length;
+	const $navElem = $('.block-solution_nav');
+	// mob
+	const widthItem = 200; 
 
+	if (window.matchMedia("(max-width: 991px)").matches) {
+		const widthInner = widthItem * countElems;
+		const $wrapperNav = $('<div/>', {
+			'class': 'block-solution_nav wrap'
+		});
+
+		$navElem.find('li').each(function() {
+			$(this).width(widthItem);
+		});
+
+		$navElem.width(widthInner);
+		$navElem.wrap($wrapperNav);
+	}
+	//
 	const autoplayInterval = setInterval(() => {
-		const curActive = $('.block-solution_nav li a.active').parents('li');
+		curActive = $('.block-solution_nav li a.active').parents('li');
 		const nextActive = curActive.next();
-		const countElems = $('.block-solution_nav li').length;
 
 		if (curActive.index() !== countElems - 1) {
 			nextActive.find('a').trigger('click', { autoplay: true });
 		} else {
 			$('.block-solution_nav li:first-child a').trigger('click', { autoplay: true });
+		}
+
+		if (window.matchMedia("(max-width: 991px)").matches) {
+			const nextPositionCoff = curActive.index() + 1 <= countElems - 1 ? curActive.index() + 1 : 0;
+			$(document).find('.block-solution_nav.wrap').animate({ scrollLeft: widthItem * nextPositionCoff }, 800);
+			// $(document).find('.block-solution_nav.wrap').scrollLeft(widthItem * nextPositionCoff);
 		}
 	}, 5000);
 	
