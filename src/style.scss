@@ -2042,6 +2042,7 @@ a {
 }
 
 .popup {
+	z-index: 10;
 	display: flex;
 	opacity: 0;
 	pointer-events: none;
@@ -2100,6 +2101,9 @@ a {
 		border-radius: 15px;
 		padding: 45px 30px 30px;
 		display: none;
+		&::before {
+			display: none;
+		}
 
 		.title {
 			font-size: 1.5rem;
