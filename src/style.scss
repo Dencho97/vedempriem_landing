@@ -2520,6 +2520,9 @@ a {
 					&::before {
 						display: none;
 					}
+					&:hover, &.active {
+						box-shadow: none !important;
+					}
 				}
 			}
 		}
@@ -2680,32 +2683,89 @@ a {
 			}
 		}
 	}
-	.block-how-cost__tariffs td:nth-child(2), .block-how-cost__tariffs td:nth-child(3), .block-how-cost__tariffs td:nth-child(4), .block-how-cost__tariffs th:nth-child(2), .block-how-cost__tariffs th:nth-child(3), .block-how-cost__tariffs th:nth-child(4) {
-		width: 25%;
-	}
 	.block-how-cost {
 		margin-top: 100px;
-
+		.table-container {
+			width: 50%;
+			overflow-x: scroll;
+			overflow-y: visible;
+			margin-left: 50%;
+			table {
+				margin: 0 0 0 -90%;
+			}
+		}
 		&__tariffs {
 			td {
+				font-size: 14px;
 				&:first-child {
 					padding-left: 0;
 				}
-
-				font-size: 14px;
+				&:nth-child(2),
+				&:nth-child(3),
+				&:nth-child(4) {
+					width: 25%;
+				}
 			}
-
-			&_prices row td {
+			th {
+				&:nth-child(2),
+				&:nth-child(3),
+				&:nth-child(4) {
+					width: 25%;
+				}
+			}
+			&_prices-row td {
 				padding-top: 25px;
 				padding-bottom: 20px;
 			}
+			tr {
+				td, td {
+					&:first-child {
+						position: absolute;
+						left: 15px;
+						top: auto;
+						padding: 0;
+						width: 50%;
+						align-items: center;
+    					display: flex;
+					}
+				}
+				&:nth-child(1) td {
+					height: 65px;
+				}
+				&:nth-child(2) td {
+					height: 111px;
+				}
+				&:nth-child(3) td {
+					height: 50px;
+				}
+				&:nth-child(4) td {
+					height: 50px;
+				}
+				&:nth-child(5) td {
+					height: 50px;
+				}
+				&:nth-child(6) td {
+					height: 95px;
+				}
+				&:nth-child(7) td {
+					height: 59px;
+				}
+			}
 		}
-	}
-	.block-how-cost__tariffs_footer td:nth-child(2)::before, .block-how-cost__tariffs_footer td:nth-child(3)::before, .block-how-cost__tariffs_footer td:nth-child(4)::before {
-		left: 15px;
-	}
-	.block-how-cost__tariffs_footer td:nth-child(2)::after, .block-how-cost__tariffs_footer td:nth-child(3)::after, .block-how-cost__tariffs_footer td:nth-child(4)::after {
-		right: 15px;
+		&_footer {
+			td {
+				&:nth-child(2),
+				&:nth-child(3),
+				&:nth-child(4) {
+					&:before {
+						left: 15px;
+					}
+					&:after {
+						right: 15px;
+					}
+				}
+			}
+		}
 	}
 	.block-what-if {
 		margin-top: 70px;
@@ -2961,6 +3021,7 @@ a {
 	}
 	.block-advantagers {
 		min-height: 1595px;
+		padding: 70px 0 250px 0;
 	}
 	.block-results {
 		margin-top: -70px;
@@ -3007,5 +3068,18 @@ a {
 	}
 	.block-need-site {
 		margin-top: -50px;
+	}
+}
+
+@media screen and (max-width: 375px) {
+	.block-situation {
+		min-height: 1750px;
+	}
+	.block-how-cost {
+		.table-container {
+			table {
+				margin: 0 0 0 -105%;
+			}
+		}
 	}
 }
