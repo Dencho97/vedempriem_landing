@@ -2612,6 +2612,7 @@ a {
 
 		&_title {
 			margin-top: 50px;
+			text-align: center;
 		}
 
 		&_list {
@@ -2686,13 +2687,7 @@ a {
 	.block-how-cost {
 		margin-top: 100px;
 		.table-container {
-			width: 50%;
-			overflow-x: scroll;
-			overflow-y: visible;
-			margin-left: 50%;
-			table {
-				margin: 0 0 0 -90%;
-			}
+			width: 100%;
 		}
 		&__tariffs {
 			td {
@@ -2716,40 +2711,6 @@ a {
 			&_prices-row td {
 				padding-top: 25px;
 				padding-bottom: 20px;
-			}
-			tr {
-				td, td {
-					&:first-child {
-						position: absolute;
-						left: 15px;
-						top: auto;
-						padding: 0;
-						width: 50%;
-						align-items: center;
-    					display: flex;
-					}
-				}
-				&:nth-child(1) td {
-					height: 65px;
-				}
-				&:nth-child(2) td {
-					height: 111px;
-				}
-				&:nth-child(3) td {
-					height: 50px;
-				}
-				&:nth-child(4) td {
-					height: 50px;
-				}
-				&:nth-child(5) td {
-					height: 50px;
-				}
-				&:nth-child(6) td {
-					height: 95px;
-				}
-				&:nth-child(7) td {
-					height: 59px;
-				}
 			}
 		}
 		&_footer {
@@ -3074,12 +3035,5 @@ a {
 @media screen and (max-width: 375px) {
 	.block-situation {
 		min-height: 1750px;
-	}
-	.block-how-cost {
-		.table-container {
-			table {
-				margin: 0 0 0 -105%;
-			}
-		}
 	}
 }
