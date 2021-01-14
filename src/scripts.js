@@ -37,14 +37,18 @@ $(() => {
 
 $(() => {
     $('.free-modal').on('click', function (e) {
-        e.preventDefault();
+		e.preventDefault();
+		const btnText = $(this).text();
         $('#popup').removeClass('hide').addClass('show');
-        $('#freeForm').removeClass('hide').addClass('show');
+		$('#freeForm').removeClass('hide').addClass('show');
+		$('#freeForm input[name=btn_target]').val(btnText);
     })
     $('.info-modal').on('click', function (e) {
-        e.preventDefault();
+		e.preventDefault();
+		const btnText = $(this).text();
         $('#popup').removeClass('hide').addClass('show');
-        $('#infoForm').removeClass('hide').addClass('show');
+		$('#infoForm').removeClass('hide').addClass('show');
+		$('#infoForm input[name=btn_target]').val(btnText);
     })
     $('.popup-close').on('click', function (e) {
         e.preventDefault();
